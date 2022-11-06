@@ -1,0 +1,4 @@
+type Mutation {
+  # Users Mutations
+  createUser(data: CreateUserProfile!): UserPayload!
+}

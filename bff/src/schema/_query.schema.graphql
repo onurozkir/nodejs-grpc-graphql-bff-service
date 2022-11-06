@@ -1,0 +1,6 @@
+type Query {
+
+  # Users Query
+  users: [User!]!
+  userCount(filterBy: JSONObject): Int!
+}

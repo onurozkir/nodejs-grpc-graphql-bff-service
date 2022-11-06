@@ -1,0 +1,33 @@
+{
+  "name": "user-microservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --config nodemon.json --exec babel-node ./index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.7.1",
+    "@grpc/proto-loader": "^0.7.3",
+    "@malijs/logger": "^0.6.0",
+    "aigle": "^1.14.1",
+    "faker": "^6.6.6",
+    "grpc": "^1.24.11",
+    "grpc-health-check": "^1.8.0",
+    "lodash": "^4.17.21",
+    "mali": "^0.47.1",
+    "nodemon": "^2.0.20",
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/node": "^7.19.1",
+    "@babel/parser": "^7.19.4",
+    "@babel/preset-env": "^7.19.4",
+    "babel-plugin-inline-dotenv": "^1.7.0"
+  }
+}

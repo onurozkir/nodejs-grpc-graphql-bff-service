@@ -1,0 +1,4 @@
+node_modules
+.idea
+/user-microservice/node_modules
+/bff/node_modules

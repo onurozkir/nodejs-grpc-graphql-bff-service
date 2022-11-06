@@ -1,0 +1,24 @@
+type User {
+    userNumber: Int
+    name : String
+    email: EmailAddress
+    password: String
+    age: UnsignedInt
+}
+
+input CreateUserProfile {
+    name: String
+    age: UnsignedInt
+    password: String!
+    email: String!
+}
+
+type ErrorPayload {
+    field: String
+    message: [String]
+}
+
+type UserPayload {
+    errors: [ErrorPayload]
+    user: User
+}
