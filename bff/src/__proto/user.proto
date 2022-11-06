@@ -2,9 +2,8 @@ syntax = "proto3";
 
 package user;
 
-
 message User {
-  int32 userNumber = 1;
+  int32 id = 1;
   string name = 2;
   string email = 3;
   string password = 4;
@@ -37,7 +36,7 @@ message Pagination {
 }
 
 message FindUsersPayload {
-  repeated UserData edges = 1;
+  repeated UserData data = 1;
   Pagination pagination = 2;
 }
 
@@ -51,9 +50,8 @@ message WhereParams {
 }
 
 message RequestParams {
-  WhereParams where= 1;
+  WhereParams where = 1;
 }
-
 
 message CountResponse {
   int32 count = 1;

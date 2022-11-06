@@ -1,4 +1,6 @@
 node_modules
 .idea
 /user-microservice/node_modules
+/post-microservice/node_modules
+/comment-microservice/node_modules
 /bff/node_modules

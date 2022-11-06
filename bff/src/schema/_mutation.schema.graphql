@@ -1,4 +1,8 @@
 type Mutation {
   # Users Mutations
   createUser(data: CreateUserProfile!): UserPayload!
+
+  #Comments Mutations
+  createComment(data: CreateComment!): CommentPayload!
+  deleteComment(data: DeleteComment!): Boolean!
 }

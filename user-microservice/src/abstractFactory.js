@@ -1,8 +1,8 @@
 export class AbstractFactory {
     constructor() {
         this.users = [
-            { users : {userNumber: 1, name: "Onur", email: "onur.ozkir@trendyol.com", password: "****", age: 33}},
-            { users : {userNumber: 2, name: "adasd", email: "asdasdasd@trendyol.com", password: "****", age: 24}},
+            { users : {id: 1, name: "Onur", email: "onur.ozkir@trendyol.com", password: "****", age: 33}},
+            { users : {id: 2, name: "adasd", email: "asdasdasd@trendyol.com", password: "****", age: 24}},
         ];
     }
     async findAll({ request, response }) {
@@ -17,10 +17,17 @@ export class AbstractFactory {
         return response.res;
     }
 
-    async createUser({ request, response }) {
+    async findById({ req, response }) {
+        response.res = this.users.filter((user) => user.users.userNumber === req.id);
+        return response.res;
+    }
 
-        response.res = { count : 1};
-
+    async createUser({ req, response }) {
+        console.log('req', req);
+        const data =  { ...req, id : Math.floor(Math.random() * 50 ) + 1} ;
+        this.users.push({ users : data })
+        response.res = data;
+        console.log('response.res ', response.res );
         return response.res;
     }
 

@@ -3,7 +3,7 @@ syntax = "proto3";
 package user;
 
 message User {
-  int32 userNumber = 1;
+  int32 id = 1;
   string name = 2;
   string email = 3;
   string password = 4;
@@ -50,7 +50,7 @@ message WhereParams {
 }
 
 message RequestParams {
-    WhereParams where= 1;
+    WhereParams where = 1;
 }
 
 message CountResponse {

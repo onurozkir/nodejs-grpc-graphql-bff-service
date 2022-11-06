@@ -1,0 +1,33 @@
+type Comment {
+    id : ID
+    comment: String
+    userId: Int
+    postId: Int
+    createdAt: DateTime
+}
+
+type Pagination {
+    page: Int
+    offset: Int
+    totalCount: Int
+}
+
+type CommentQueryResponse {
+    comment: [Comment!]!
+    pagination: Pagination
+}
+
+type CommentPayload {
+    errors: [ErrorPayload]
+    comment: Comment
+}
+
+input CreateComment {
+    comment: String!
+    userId: Int!
+    postId: Int!
+}
+
+input DeleteComment {
+    id: ID!
+}

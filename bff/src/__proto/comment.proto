@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package comment;
+
+message Comment {
+  int32 id = 1;
+  string comment = 2;
+  int32 userId = 3;
+  int32 postId = 4;
+  string createdAt = 5;
+}
+
+message CommentId {
+  int32 id = 1;
+}
+
+message CommentData {
+  Comment comment = 1;
+}
+
+message CreateCommentInput {
+  string comment = 1;
+  int32 userId = 2;
+  int32 postId = 3;
+}
+
+message Pagination {
+  int32 page = 1;
+  int32 offset = 2;
+  int32 totalCount = 3;
+}
+
+message FindCommentsPayload {
+  repeated CommentData data = 1;
+  Pagination pagination = 2;
+}
+
+message WhereCondition {
+  int32 commentId = 1;
+  int32 userId = 2;
+  int32 postId = 3;
+}
+
+message FindAllCommentRequest {
+  WhereCondition where = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message Empty {}
+
+
+service CommentsService {
+  rpc findComments (FindAllCommentRequest) returns (FindCommentsPayload) {}
+  rpc findById (CommentId) returns (Comment) {}
+  rpc createComment (CreateCommentInput) returns (Comment) {}
+  rpc deleteComment (CommentId) returns (Comment) {}
+}

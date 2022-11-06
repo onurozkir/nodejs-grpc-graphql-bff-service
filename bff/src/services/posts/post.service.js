@@ -3,7 +3,7 @@ import {isEmpty} from "lodash";
 
 const {each, map, promisifyAll} = Aigle
 
-class UserService {
+class PostService {
 
     constructor(client) {
         this.client = promisifyAll(client);
@@ -50,4 +50,4 @@ class UserService {
 
 }
 
-export default UserService;
+export default PostService;

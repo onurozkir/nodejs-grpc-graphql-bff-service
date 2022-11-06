@@ -1,25 +1,22 @@
 import path from 'path';
 import Mali from 'mali';
 import {AbstractFactory} from "./abstractFactory";
-import {Middleware} from "./middleware";
 import loggerMiddleware from '@malijs/logger'
 
 const HOST_PORT = `${process.env.GRPC_HOST}:${process.env.GRPC_PORT}`;
-const SERVICE_PROTO = path.resolve(__dirname, '__proto/user.proto')
+const POST_PROTO = path.resolve(__dirname, '__proto/post.proto')
 
 const main = async () => {
 
-    const middleware = new Middleware();
     const abstractFactory = new AbstractFactory();
 
     const UserService = {
-        getAllUsers: [middleware.findAll(), abstractFactory.findAll.bind(abstractFactory)],
+        getAllPost: abstractFactory.findAll.bind(abstractFactory),
         findById: abstractFactory.findById.bind(abstractFactory),
-        countUserGRPC:  abstractFactory.countUsers.bind(abstractFactory),
-        createUser : abstractFactory.createUser.bind(abstractFactory)
+        createPost : abstractFactory.createPost.bind(abstractFactory)
     }
     const server = new Mali();
-    server.addService(SERVICE_PROTO, null, {
+    server.addService(POST_PROTO, null, {
         keepCase: true,
         enums: String,
         oneofs: true
