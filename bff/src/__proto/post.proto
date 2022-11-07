@@ -14,10 +14,6 @@ message PostId {
   int32 id = 1;
 }
 
-message PostData {
-  Post posts = 1;
-}
-
 message CreatePostInput {
   string title = 1;
   string content = 2;
@@ -31,16 +27,31 @@ message Pagination {
 }
 
 message FindPostsPayload {
-  repeated PostData edges = 1;
+  repeated Post data = 1;
   Pagination pagination = 2;
 }
 
 message Empty {}
 
+message DeletePostResponse {
+  bool result = 1;
+}
+
+message WhereCondition {
+  int32 postId = 1;
+  int32 userId = 2;
+}
+
+message FindAllPostRequest {
+  WhereCondition where = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
 
 service PostsService {
-  rpc getAllPost (Empty) returns (FindPostsPayload) {}
+  rpc getPosts (FindAllPostRequest) returns (FindPostsPayload) {}
   rpc findById (PostId) returns (Post) {}
   rpc createPost (CreatePostInput) returns (Post) {}
-  rpc deletePost (PostId) returns (Post) {}
+  rpc deletePost (PostId) returns (DeletePostResponse) {}
 }

@@ -14,10 +14,6 @@ message CommentId {
   int32 id = 1;
 }
 
-message CommentData {
-  Comment comment = 1;
-}
-
 message CreateCommentInput {
   string comment = 1;
   int32 userId = 2;
@@ -31,7 +27,7 @@ message Pagination {
 }
 
 message FindCommentsPayload {
-  repeated CommentData data = 1;
+  repeated Comment data = 1;
   Pagination pagination = 2;
 }
 
@@ -49,10 +45,14 @@ message FindAllCommentRequest {
 
 message Empty {}
 
+message DeleteCommentResponse {
+  bool result = 1;
+}
+
 
 service CommentsService {
   rpc findComments (FindAllCommentRequest) returns (FindCommentsPayload) {}
   rpc findById (CommentId) returns (Comment) {}
   rpc createComment (CreateCommentInput) returns (Comment) {}
-  rpc deleteComment (CommentId) returns (Comment) {}
+  rpc deleteComment (CommentId) returns (DeleteCommentResponse) {}
 }

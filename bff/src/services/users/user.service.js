@@ -39,6 +39,10 @@ class UserService {
         return edges.map((edge) => edge.users);
     }
 
+    async findById(filter) {
+        return await this.client.findByIdAsync(filter);
+    }
+
     async createUser(data) {
         return await this.client.createUserAsync(data);
     }

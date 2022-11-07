@@ -1,0 +1,5 @@
+type Pagination {
+    page: Int
+    offset: Int
+    totalCount: Int
+}

@@ -7,9 +7,7 @@ class CommentService {
 
     constructor(client) {
         this.client = promisifyAll(client);
-        this._jsonFields= [];
     }
-
 
     async findComment(filter) {
         const result = await this.client.findCommentsAsync({
@@ -17,30 +15,9 @@ class CommentService {
             limit: filter.limit,
             offset: filter.offset
         });
-
-        let { data } = result
-
-        data = data || [] ;
-
-        data = await map(data, async (datum) => {
-            const { comment } = datum
-
-            if (!isEmpty(comment)) {
-                await each(this._jsonFields, async (field) => {
-                    if (Buffer.isBuffer(comment[field])) {
-                        const json = comment[field].toString()
-
-                        if (!isEmpty(json)) comment[field] = JSON.parse(json)
-                    }
-                })
-            }
-
-            return {
-                comment
-            }
-        })
+        let { data } = result || [];
         return {
-            comment: data.map((data) => data.comment),
+            comment: data,
             pagination: result.pagination
         };
     }

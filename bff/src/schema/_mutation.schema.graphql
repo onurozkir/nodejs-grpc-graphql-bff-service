@@ -4,5 +4,5 @@ type Mutation {
 
   #Comments Mutations
   createComment(data: CreateComment!): CommentPayload!
-  deleteComment(data: DeleteComment!): Boolean!
+  deleteComment(data: DeleteComment!): CommentDeletePayload!
 }

@@ -11,9 +11,10 @@ const main = async () => {
     const abstractFactory = new AbstractFactory();
 
     const UserService = {
-        getAllPost: abstractFactory.findAll.bind(abstractFactory),
+        getPosts: abstractFactory.findPosts.bind(abstractFactory),
         findById: abstractFactory.findById.bind(abstractFactory),
-        createPost : abstractFactory.createPost.bind(abstractFactory)
+        createPost : abstractFactory.createPost.bind(abstractFactory),
+        deletePost : abstractFactory.deletePost.bind(abstractFactory)
     }
     const server = new Mali();
     server.addService(POST_PROTO, null, {

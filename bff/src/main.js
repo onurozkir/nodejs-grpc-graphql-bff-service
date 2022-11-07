@@ -8,6 +8,7 @@ const { map, reduce } = Aigle;
 
 import {Registry} from "./registry"; // eslint-disable-line
 import Server from './server';
+import {assign, startCase} from "lodash";
 
 const main = async () => {
     const schemaPaths = glob.sync(path.resolve(__dirname, 'schema/*.schema.graphql'));

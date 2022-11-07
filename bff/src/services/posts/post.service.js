@@ -1,42 +1,26 @@
 import Aigle from 'aigle';
-import {isEmpty} from "lodash";
 
-const {each, map, promisifyAll} = Aigle
+const { promisifyAll} = Aigle
 
 class PostService {
 
     constructor(client) {
         this.client = promisifyAll(client);
-        this._jsonFields= [];
     }
 
 
-    async findAll(data) {
-        const result = await this.client.getAllUsersAsync(data);
+    async getPosts(filter) {
+        const result = await this.client.getPostsAsync({
+            ...filter.filterBy,
+            limit: filter.limit,
+            offset: filter.offset
+        });
 
-        let { edges } = result
-
-        edges = edges || [] ;
-
-        edges = await map(edges, async (edge) => {
-            const { users } = edge
-
-            if (!isEmpty(users)) {
-                await each(this._jsonFields, async (field) => {
-                    if (Buffer.isBuffer(users[field])) {
-                        const json = users[field].toString()
-
-                        if (!isEmpty(json)) users[field] = JSON.parse(json)
-                    }
-                })
-            }
-
-            return {
-                users
-            }
-        })
-
-        return edges.map((edge) => edge.users);
+        let { data  }  = result || [];
+        return {
+            post: data,
+            pagination: result.pagination
+        };
     }
 
     async createUser(data) {

@@ -2,8 +2,12 @@ type Query {
 
   # Users Query
   users: [User!]!
+  findUser(id: Int): User!
   userCount(filterBy: JSONObject): Int!
 
   # Comments Query
   findComment(filterBy: JSONObject, limit: Int, offset: Int): CommentQueryResponse!
+
+  # Post Query
+  findPosts(filterBy: JSONObject, limit: Int, offset: Int): PostQueryResponse!
 }

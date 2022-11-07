@@ -6,12 +6,6 @@ type Comment {
     createdAt: DateTime
 }
 
-type Pagination {
-    page: Int
-    offset: Int
-    totalCount: Int
-}
-
 type CommentQueryResponse {
     comment: [Comment!]!
     pagination: Pagination
@@ -22,6 +16,11 @@ type CommentPayload {
     comment: Comment
 }
 
+type CommentDeletePayload {
+    errors: [ErrorPayload]
+    result: Boolean
+}
+
 input CreateComment {
     comment: String!
     userId: Int!
@@ -29,5 +28,5 @@ input CreateComment {
 }
 
 input DeleteComment {
-    id: ID!
+    id: Int!
 }

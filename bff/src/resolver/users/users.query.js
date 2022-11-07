@@ -5,6 +5,8 @@ exports.findAll = {
     }
 }
 
+exports.findById = async (parent, data, { userService }) => await userService.findById(data);
+
 exports.userCount = async (parent, data, { userService }) => await userService.countUser(data.filterBy)
 
 
