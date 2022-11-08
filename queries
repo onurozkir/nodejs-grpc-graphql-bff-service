@@ -124,7 +124,7 @@ mutation createUser {
       name: "onur"
       age: 35
       password: "qweqwe"
-      email: "qweq1we1@qeqwe.com"
+      email: "qweq1we11@qeqwe.com"
     }
   ) {
     errors {
@@ -136,6 +136,21 @@ mutation createUser {
       name
       email
       age
+    }
+  }
+}
+
+query GetUserWithComment {
+  getUserWithComment(id: 1) {
+    id
+    name
+    email
+    comments {
+      comment
+      createdAt
+      id
+      postId
+      userId
     }
   }
 }
