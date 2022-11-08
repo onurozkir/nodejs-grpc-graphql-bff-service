@@ -1,13 +1,9 @@
-import Aigle from 'aigle';
-
-const { promisifyAll} = Aigle
+const Bluebird = require('bluebird');
 
 class PostService {
-
     constructor(client) {
-        this.client = promisifyAll(client);
+        this.client = Bluebird.promisifyAll(client);
     }
-
 
     async getPosts(filter) {
         const result = await this.client.getPostsAsync({
@@ -28,7 +24,7 @@ class PostService {
     }
 
     async countUser(query) {
-        const result = await this.client.countUserGrpcAsync(query);
+        const result = await this.client.countUserGRPCAsync(query);
         return result.count;
     }
 

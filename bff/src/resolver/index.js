@@ -6,7 +6,7 @@ const postQuery = require('./posts/posts.query');
 
 module.exports = {
     Query: {
-        users : usersQuery.findAll,
+        users : usersQuery.users,
         userCount : usersQuery.userCount,
         findUser: usersQuery.findById,
         findComment: commentQuery.findComment,

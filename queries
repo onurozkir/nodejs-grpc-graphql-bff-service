@@ -1,0 +1,141 @@
+query findComment {
+  findComment (
+    filterBy : {
+      where : {
+        commentId : 1,
+        userId: 1
+      }
+    },
+    limit: 1,
+    offset: 10
+  ) {
+    comment {
+      id
+      comment
+      userId
+      postId
+      createdAt
+    }
+    pagination {
+      page
+      totalCount
+      offset
+    }
+  }
+}
+
+mutation createComment{
+  createComment(data: {
+      comment: "onur"
+      userId: 35
+      postId: 3
+  }) {
+    errors {
+      field
+      message
+    }
+    comment {
+      id
+      comment
+      userId
+      postId
+      createdAt
+    }
+  }
+}
+
+mutation DeleteComment($deleteCommentData: DeleteComment!) {
+  deleteComment(data: $deleteCommentData) {
+    errors {
+      field
+      message
+    }
+    result
+  }
+}
+
+query FindPosts($findPostFilterBy: JSONObject, $commentsFilterBy2: JSONObject) {
+  findPosts(filterBy: $findPostFilterBy, limit: 0, offset: 10) {
+    post {
+      content
+      createdAt
+      id
+      title
+      userId
+      author {
+        id
+        email
+      }
+      comments(filterBy: $commentsFilterBy2,limit: 1,offset: 10) {
+        comment {
+          comment
+          createdAt
+          id
+          postId
+          userId
+        }
+        pagination {
+          offset
+          page
+          totalCount
+        }
+      }
+    }
+    pagination {
+      offset
+      page
+      totalCount
+    }
+  }
+}
+
+query FindUser {
+  findUser(id: 1) {
+    age
+    email
+    id
+    name
+    password
+  }
+}
+
+query findUsers {
+  users {
+    id
+    name
+    age
+    password
+  }
+}
+
+query userCount {
+  userCount(
+    filterBy: {
+      where: {
+        email: "onurozkir@hotmail.com"
+      }
+    }
+  )
+}
+
+mutation createUser {
+  createUser(
+    data: {
+      name: "onur"
+      age: 35
+      password: "qweqwe"
+      email: "qweq1we1@qeqwe.com"
+    }
+  ) {
+    errors {
+      field
+      message
+    }
+    user {
+      id
+      name
+      email
+      age
+    }
+  }
+}

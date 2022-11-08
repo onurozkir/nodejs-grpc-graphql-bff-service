@@ -1,46 +1,27 @@
-import Aigle from 'aigle';
-import {isEmpty} from "lodash";
-
-const {each, map, promisifyAll} = Aigle
+const Bluebird = require('bluebird');
 
 class UserService {
 
     constructor(client) {
-        this.client = promisifyAll(client);
-        this._jsonFields= [];
+        this.client = Bluebird.promisifyAll(client);
     }
 
+    async findAll(filter) {
+        console.log('this.client', this.client);
+        const result = await this.client.getAllUsersAsync();
 
-    async findAll(data) {
-        const result = await this.client.getAllUsersAsync(data);
+        console.log('result', result);
+        console.log('filter', filter);
 
-        let { edges } = result
-
-        edges = edges || [] ;
-
-        edges = await map(edges, async (edge) => {
-            const { users } = edge
-
-            if (!isEmpty(users)) {
-                await each(this._jsonFields, async (field) => {
-                    if (Buffer.isBuffer(users[field])) {
-                        const json = users[field].toString()
-
-                        if (!isEmpty(json)) users[field] = JSON.parse(json)
-                    }
-                })
-            }
-
-            return {
-                users
-            }
-        })
-
-        return edges.map((edge) => edge.users);
+        let { data } = result || [];
+        return {
+            users: data,
+            pagination: result.pagination
+        };
     }
 
     async findById(filter) {
-        return await this.client.findByIdAsync(filter);
+       return await this.client.findByIdAsync(filter);
     }
 
     async createUser(data) {
@@ -48,7 +29,7 @@ class UserService {
     }
 
     async countUser(query) {
-        const result = await this.client.countUserGrpcAsync(query);
+        const result = await this.client.countUserGRPCAsync(query);
         return result.count;
     }
 

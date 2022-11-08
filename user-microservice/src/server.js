@@ -13,7 +13,7 @@ const main = async () => {
     const abstractFactory = new AbstractFactory();
 
     const UserService = {
-        getAllUsers: [middleware.findAll(), abstractFactory.findAll.bind(abstractFactory)],
+        getAllUsers: abstractFactory.findAll.bind(abstractFactory),
         findById: abstractFactory.findById.bind(abstractFactory),
         countUserGRPC:  abstractFactory.countUsers.bind(abstractFactory),
         createUser : abstractFactory.createUser.bind(abstractFactory)

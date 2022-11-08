@@ -6,6 +6,8 @@ export class AbstractFactory {
         ];
     }
     async findAll({ req, response }) {
+        console.log('req', req);
+        console.log('response', response);
         response.res = {
             edges: this.users,
             pagination: {

@@ -5,7 +5,7 @@ type Post {
     userId: Int
     author: User
     createdAt: DateTime
-    comments(filterBy: JSONObject, limit: Int, offset: Int): CommentQueryResponse
+    comments(filterBy: JSONObject, limit: Int, offset: Int): CommentQueryResponse!
 }
 
 type PostQueryResponse {

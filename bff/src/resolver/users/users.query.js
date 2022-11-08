@@ -1,8 +1,7 @@
-exports.findAll = {
-    resolve : async (...args) =>  {
-        const { req, res, userService } = args[2];
-        return await userService.findAll({req, res});
-    }
+exports.users = async (parent, data, { userService }) => {
+    console.log('data',data);
+    console.log('userService',userService);
+    return await userService.findAll(data);
 }
 
 exports.findById = async (parent, data, { userService }) => await userService.findById(data);

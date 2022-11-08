@@ -1,12 +1,9 @@
-import Aigle from 'aigle';
-import {isEmpty} from "lodash";
-
-const {each, map, promisifyAll} = Aigle
+const Bluebird = require('bluebird');
 
 class CommentService {
 
     constructor(client) {
-        this.client = promisifyAll(client);
+        this.client = Bluebird.promisifyAll(client);
     }
 
     async findComment(filter) {
