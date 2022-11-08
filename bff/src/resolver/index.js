@@ -11,6 +11,7 @@ module.exports = {
         findUser: usersQuery.findById,
         findComment: commentQuery.findComment,
         findPosts: postQuery.findPosts,
+        getUserWithComment: usersQuery.getUserWithComment,
     },
     Mutation: {
         createUser: usersMutation.createUser,

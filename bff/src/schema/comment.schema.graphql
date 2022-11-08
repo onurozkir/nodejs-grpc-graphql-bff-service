@@ -1,5 +1,5 @@
 type Comment {
-    id : ID
+    id : Int
     comment: String
     userId: Int
     postId: Int
@@ -7,7 +7,7 @@ type Comment {
 }
 
 type CommentQueryResponse {
-    comment: [Comment!]!
+    comment: [Comment!]
     pagination: Pagination
 }
 

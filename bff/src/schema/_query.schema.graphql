@@ -4,6 +4,7 @@ type Query {
   users: [User!]!
   findUser(id: Int): User!
   userCount(filterBy: JSONObject): Int!
+  getUserWithComment(id: Int) : GetUserWithComment
 
   # Comments Query
   findComment(filterBy: JSONObject, limit: Int, offset: Int): CommentQueryResponse!

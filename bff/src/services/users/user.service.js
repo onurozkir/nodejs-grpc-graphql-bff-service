@@ -7,11 +7,7 @@ class UserService {
     }
 
     async findAll(filter) {
-        console.log('this.client', this.client);
         const result = await this.client.getAllUsersAsync();
-
-        console.log('result', result);
-        console.log('filter', filter);
 
         let { data } = result || [];
         return {
@@ -31,6 +27,10 @@ class UserService {
     async countUser(query) {
         const result = await this.client.countUserGRPCAsync(query);
         return result.count;
+    }
+
+    async getUserWithComment(query) {
+        return await this.client.getUserWithCommentAsync(query);
     }
 
 }

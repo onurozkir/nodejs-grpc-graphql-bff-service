@@ -5,6 +5,12 @@ type User {
     password: String
     age: UnsignedInt
 }
+type GetUserWithComment {
+    id: Int!
+    name : String
+    email: EmailAddress
+    comments: [Comment]
+}
 
 input CreateUserProfile {
     name: String

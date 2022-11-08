@@ -13,6 +13,7 @@ class CommentService {
             offset: filter.offset
         });
         let { data } = result || [];
+
         return {
             comment: data,
             pagination: result.pagination
@@ -26,9 +27,6 @@ class CommentService {
     async deleteComment(data) {
         return await this.client.deleteCommentAsync(data);
     }
-
-
-
 }
 
 export default CommentService;
