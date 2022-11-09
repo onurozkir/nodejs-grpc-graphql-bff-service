@@ -14,7 +14,7 @@ export class AbstractFactory {
 
     async findAll({req, response}) {
         response.res = {
-            edges: this.users,
+            data: this.users,
             pagination: {
                 page: 1,
                 offset: 10,

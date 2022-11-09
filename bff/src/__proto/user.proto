@@ -77,29 +77,4 @@ service UsersService {
   rpc getUserWithComment(UserId)  returns (GetUserWithCommentResponse) {}
 }
 
-message Comment {
-  int32 id = 1;
-  string comment = 2;
-  int32 userId = 3;
-  int32 postId = 4;
-  string createdAt = 5;
-}
 
-message FindCommentsPayload {
-  repeated Comment data = 1;
-  Pagination pagination = 2;
-}
-
-message WhereCondition {
-  int32 userId = 2;
-}
-
-message FindCommentByUserRequest {
-  WhereCondition where = 1;
-  int32 limit = 2;
-  int32 offset = 3;
-}
-
-service CommentsService {
-  rpc findComments (FindCommentByUserRequest) returns (FindCommentsPayload) {}
-}

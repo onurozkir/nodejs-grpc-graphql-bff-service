@@ -3,7 +3,7 @@ type User {
     name : String
     email: EmailAddress
     password: String
-    age: UnsignedInt
+    age: UnsignedInt @deprecated(reason: "Use `newField`.")
 }
 type GetUserWithComment {
     id: Int!
@@ -27,4 +27,9 @@ type ErrorPayload {
 type UserPayload {
     errors: [ErrorPayload]
     user: User
+}
+
+type UserAllResponse {
+    users: [User!]!
+    pagination: Pagination
 }

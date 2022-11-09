@@ -7,7 +7,7 @@ class UserService {
     }
 
     async findAll(filter) {
-        const result = await this.client.getAllUsersAsync();
+        const result = await this.client.getAllUsersAsync(filter);
 
         let { data } = result || [];
         return {
@@ -17,6 +17,7 @@ class UserService {
     }
 
     async findById(filter) {
+        console.log('filter', filter);
        return await this.client.findByIdAsync(filter);
     }
 

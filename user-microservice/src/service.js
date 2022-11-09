@@ -13,7 +13,6 @@ const packageDefinition = protoLoader.loadSync(
         oneofs: true
     });
 
-  console.log(__dirname);
 const {CommentsService} = grpc.loadPackageDefinition(packageDefinition).comment;
 
 module.exports = {
