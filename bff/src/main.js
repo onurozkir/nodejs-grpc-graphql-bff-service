@@ -3,12 +3,9 @@ import fs from "fs";
 import glob from 'glob';
 import Aigle from 'aigle';
 const resolver = require('./resolver');
-
-const { map, reduce } = Aigle;
-
-import {Registry} from "./registry"; // eslint-disable-line
+const { reduce } = Aigle;
+import {Registry} from "./registry";
 import Server from './server';
-import {assign, startCase} from "lodash";
 
 const main = async () => {
     const schemaPaths = glob.sync(path.resolve(__dirname, 'schema/*.schema.graphql'));

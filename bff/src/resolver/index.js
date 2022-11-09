@@ -22,6 +22,4 @@ module.exports = {
         comments: async (parent, query, { commentService }) =>  await commentService.findComment(query),
         author: async (parent, query, { userService }) =>  await userService.findById({ id : parent.userId })
     }
-
-
 }
